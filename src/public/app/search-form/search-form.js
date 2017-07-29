@@ -31,6 +31,7 @@ angular
                 pag: 1, tag: this.searchData.tag,
                 userId: this.searchData.userId
             })
+
         }
 
         /**
@@ -48,6 +49,8 @@ angular
             }
             this.searchs.push(temp)
             LocalStorage.set("searchs", this.searchs)
+            this.searchData.tag = ""
+            this.searchData.userId = ""
         }
 
         /**
