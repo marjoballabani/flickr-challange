@@ -1,6 +1,8 @@
 div.main-app.container-fluid
     div.row
-        h3.co-md-12.main-title
+        h3.co-md-12.main-title(
+            ng-click="$ctrl.goHome()"
+        )
             span.fa.fa-flickr
             |  Flickr search
     div.main-wrapper.col-md-12(

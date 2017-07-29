@@ -14,8 +14,8 @@ angular.module('app')
             controller: function (
                 $state
             ) {
-                this.goTo = (state) => {
-                    $state.go(state)
+                this.goHome = () => {
+                    $state.go('app.form')
                 }
             }
         })
