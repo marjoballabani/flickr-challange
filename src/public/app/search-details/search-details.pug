@@ -1,0 +1,16 @@
+div.details.row
+    div.col-md-3.detail-img(
+        ng-repeat="photo in $ctrl.photos"
+    )
+        img.col-md-12(
+            ng-src="{{photo.url_q}}"
+        )
+
+div.details.row
+div.col-md-2.col-md-offset-5.load
+    label(
+        ng-click="$ctrl.loadMore()"
+    )
+        | More
+        br
+        div.fa.fa-arrow-down

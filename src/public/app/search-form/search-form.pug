@@ -1,0 +1,93 @@
+div.search-form
+    div.form-container.col-md-4.col-md-offset-4
+        div.panel.panel-default.form-panel
+            div.panel-heading
+                | Filter your photos
+            div.panel-body
+                form.form-horizontal(
+                    name="searchForm"
+                    ng-submit="searchForm.$valid && $ctrl.search()"
+                    novalidate
+                )
+                    div.form-group
+                        label.col-sm-3.control-label(
+                            for="tag"
+                        )
+                            | Tag
+
+                        div.col-sm-9
+                            input.form-control(
+                                type="text"
+                                id="searchTag"
+                                ng-model="$ctrl.searchData.tag"
+                                name="tag"
+                                required
+                            )
+                        span.error(
+                            ng-show="searchForm.tag.$error.required && searchForm.$submitted"
+                        ) Required
+                    div.form-group
+                        label.col-sm-3.control-label(
+                            for="userId"
+                        )
+                            | User ID
+
+                        div.col-sm-9
+                            input.form-control(
+                                type="text"
+                                id="userId"
+                                ng-model="$ctrl.searchData.userId"
+                            )
+
+                    div.form-group
+                        div.col-sm-offset-9.col-sm-2
+                            button.btn.btn-primary
+                                | Search
+
+    div.searchs-container.col-md-6.col-md-offset-3
+        div.filters.row(
+        )
+            label.col-md-3(
+                ng-click="$ctrl.setOrder('owner')"
+            )
+                span.fa.fa-user
+                |  owner
+
+            label.col-md-3(
+                ng-click="$ctrl.setOrder('views')"
+            )
+                span.fa.fa-eye
+                |  views
+            label.col-md-3(
+                ng-click="$ctrl.setOrder('taken')"
+            )
+                span.fa.fa-camera-retro
+                |  taken
+            label.col-md-3(
+                ng-click="$ctrl.setOrder('uploaded')"
+            )
+                span.fa.fa-cloud-upload
+                |  uploaded
+
+    div.searchs-container.col-md-6.col-md-offset-3
+        div.search(
+            ng-repeat="search in $ctrl.searchs | orderBy:$ctrl.order"
+        )
+            div.row(
+                ng-click="$ctrl.selectImage(search)"
+            )
+                div.col-md-3
+                    img.col-md-12(
+                        ng-src="{{search.url}}"
+                    )
+                div.col-md-2.align-middle
+                    h4 tag: {{'#' + search.tag}}
+
+                div.col-md-3.align-middle
+                    label {{search.owner}}
+                    label {{'views: ' + search.views}}
+
+                div.col-md-4.align-middle
+                    label {{search.uploaded | date}}
+                    label {{search.taken}}
+
